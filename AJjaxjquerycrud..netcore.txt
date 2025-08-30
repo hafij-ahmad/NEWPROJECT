@@ -1,0 +1,552 @@
+https://www.youtube.com/watch?v=3r6RfShv8m8&t=829s
+
+Step 1-Open Visual studio 2019-Craete a new projects-Select Asp.net core web projects
+Next-Name-JqueryAjaxAspnetcore
+location-create-drop select version 
+.net coreasp.net3.1
+
+select Web application(Model-view-controller)-template and also unchecked configuration for HTTPS
+Create
+
+Step2-First install packages(check which verion project go to dependency-expand-framework
+first right click properties -check version 3.1.10
+Right click manage nuget packages
+install
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+
+Step3-Go to Model folder Create New class TrnsactionModel
+
+
+ public class TransactionModel
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string AccountNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string BeneficieryName { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string BankName { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string SWIFTCode { get; set; }
+
+        public int Amount { get; set; }
+
+
+    }
+After that creating TransactionDbContext in Model folder
+
+
+ public class TransactionDbContext:DbContext
+    {
+        public TransactionDbContext(DbContextOptions<TransactionDbContext> options):base(options)
+        {
+
+        }
+        public DbSet<TransactionModel> Transactions { get; set; }
+    }
+
+after that appsetting.json write connectionstring
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DbConection": "Server=LAPTOP-V222TVKB\\SQLEXPRESS; database=Ajaxjquerypopup; trusted-connection=true;MultipleActiveResultSet=true"
+
+  }
+after that Go to Startup.cs
+
+configuration service call  connection string using depenecy injection
+
+           
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Decconnection")));
+Step 4- DO migration Tools menu -pakage manage console
+Add-Migration"initial create"
+enter
+PM> Update-Database
+entetr
+ after that check database refresh a there created database and table and check column details
+-------------------------------------------------------------------------
+Step 5 add new controller=new controller=select mvc entity with
+view -add-name=TransactionControleer
+now update controller=contolreer nam=Transaction
+
+now go to controller folder
+
+there create action method 
+and remove details action method detail.cshtml also no need view also
+
+Step 6-Go google Type google font roboto seach in gpt
+
+emdeded copy link and past inside _Layout.cshtml
+
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+After that wwwroot folder inside style seet
+
+body
+{
+font-family: 'Roboto', sans-serif;
+}
+
+After tat seach font awesome icon 
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+After that Go to Index page
+
+<h1 class="text-center"><i class="fas fa-comment-dollar text-success"></i> Transaction History</h1>
+After that run program see Transaction History green color Icon in index page is coming/
+
+And After that ADDING nEW Column Date
+
+Go to Model Class Transaction add column and Modify also
+
+
+
+PM> Add-Migration "AddedDatecolumn"  hit enter
+
+PM> Update-Database
+
+
+After that Index.cshtml
+Create button Add in DOWNL AY OUT REMOVE UPPER AND ADD
+
+ <th><a asp-action="Create" class="btn btn text-white"><i class="fas fa-comment-dollar text-success"></i>New Transaction</a></th>
+
+After that run program and see
+
+And Also CHANGE name Edit.cshtml
+AddorEdit
+And AFTER THAT GO TO cREATE METHOD PASS parameter int id=0
+
+// GET: Transaction/Create
+
+  public async Task<IActionResult> AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+                return View();
+            else
+            {
+                var transactionModel = await _context.transactionModels.FindAsync(id);
+                if (transactionModel == null)
+                {
+                    return NotFound();
+                }
+                return View(transactionModel);
+            }
+        }
+
+AddOrEdit.cshtml
+
+@model Angularjspopnetcore.Models.TransactionModel
+    @{
+        ViewData["Title"] = "Edit";
+    }
+
+    @*<h1>Edit</h1>
+
+    <h4>TransactionModel</h4>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Date" />
+                <div class="form-group">
+                    <label asp-for="AccountNumber" class="control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">#</div>
+                            <input asp-for="AccountNumber" class="form-control" />
+                        </div>
+                    </div>
+                    
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BeneficieryName" class="control-label"></label>
+                            <input asp-for="BeneficieryName" class="form-control" />
+                            <span asp-validation-for="BeneficieryName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="BankName" class="control-label"></label>
+                            <input asp-for="BankName" class="form-control" />
+                            <span asp-validation-for="BankName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SWIFTCode" class="control-label"></label>
+                            <input asp-for="SWIFTCode" class="form-control" />
+                            <span asp-validation-for="SWIFTCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Amount" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-dollar-sign text-success"></i>
+                                    </div>
+                                    <input asp-for="Amount" class="form-control" />
+                                </div>
+                            </div>
+                            
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+               
+              
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+Afer that change Style sheet
+
+
+
+.loader{
+    border:16px solid #f3f3f3;
+        border-top:16px solid #3498db;
+        border-radius:50%;
+        width:80%;
+        height:80%;
+        animation:spin 2s linear infinite;
+        position:fixed;
+        top:45%;
+        left:40%;
+}
+@keyframes spin{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+.hide{
+    display:none;
+}
+
+After that Apply model popup
+First bootstrap.com
+
+Model
+Now Add Model popup bootstrap in Layout.cshtml
+before footer
+
+<!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="model-form">
+        Launch demo modal
+    </button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="form-model">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="model" aria-label="Close">
+                        <span area-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Content will be loaded here -->
+                </div>
+                @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+After that Go Addoredit button 
+go to index.cshtml change AddOrEdit button in Model popup
+
+@*<th><a asp-action="AddOrEdit" class="btn btn-success text-white"><i class="fas fa-random"></i>New Transaction</a></th>*@
+
+            <th><a onclick="showInPopup('@Url.Action("AddOrEdit","Transaction", null,Context.Request.Scheme)','New Transaction')" class="btn btn-success text-white"><i class="fas fa-random"></i>New Transaction</a></th>
+
+After that showInPopup in defined function in site js folder-site.js javascript
+
+
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+
+
+showInPopup = (url, title) => {
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (res) {
+            // Populate modal body and title with response data
+            $("#form-model .modal-body").html(res);
+            $("#form-model .modal-title").html(title);
+
+            // Show the modal
+            $("#form-model").modal('show');
+        },
+        error: function (err) {
+            console.error("Error loading content:", err);
+        }
+    });
+}}
+
+ public class TransactionModel
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required(ErrorMessage ="This Field is required.")]
+        [Column(TypeName = "nvarchar(100)")]
+        [Display(Name = "Account Number")]
+        [MaxLength(12)]
+        public string AccountNumber { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        [Required(ErrorMessage = "This Field is required.")]
+        [Display(Name = "Beneficiery Name")]
+        public string BeneficieryName { get; set; }
+
+        [Required(ErrorMessage = "This Field is required.")]
+        [Display(Name = "Bank Name")]
+        [Column(TypeName = "nvarchar(100)")]
+        public string BankName { get; set; }
+
+        [Required(ErrorMessage = "This Field is required.")]
+        [Display(Name = "SWIFT Code")]
+        [Column(TypeName = "nvarchar(100)")]
+        [MaxLength(11)]
+        public string SWIFTCode { get; set; }
+        [Required(ErrorMessage = "This Field is required.")]
+        [Display(Name = "Beneficiery Name")]
+        [MaxLength(11)]
+        public int Amount { get; set; }
+
+        public DateTime Date { get; set; }// add new column in Date then after Add migration
+
+
+    }
+
+After that change action method
+
+    // GET: Transaction/Create
+        public async Task<IActionResult> AddOrEdit(int id = 0)
+        {
+            if (id == 0)
+                return View(new TransactionModel());
+            else
+            {
+                var transactionModel = await _context.transactionModels.FindAsync(id);
+                if (transactionModel == null)
+                {
+                    return NotFound();
+                }
+                return View(transactionModel);
+            }
+        }
+
+
+
+ [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("Id,AccountNumber,BeneficieryName,BankName,SWIFTCode,Amount,Date")] TransactionModel transactionModel)
+        {
+            //if (id != transactionModel.Id)
+            //{
+            //    return NotFound();
+            //}
+
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    _context.Add(transactionModel);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+                else
+                {
+                    try
+                    {
+                        _context.Update(transactionModel);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!TransactionModelExists(transactionModel.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    }
+                //return RedirectToAction(nameof(Index));
+                return Json(new { isvalid = true, html = "" });
+                }
+                return View(transactionModel);
+            }
+        
+Aftr add new class in Helper in our projects
+
+public class Helper
+    {
+        public static async Task<string> RenderRazorViewToString(Controller controller, string viewName, object model = null)
+        {
+            controller.ViewData.Model = model;
+
+            using (var sw = new StringWriter())
+            {
+                IViewEngine viewEngine = controller.HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
+                ViewEngineResult viewEngineResult = viewEngine.FindView(controller.ControllerContext, viewName, false);
+
+                if (!viewEngineResult.Success)
+                {
+                    // Handle view not found case
+                    throw new FileNotFoundException($"View '{viewName}' not found.");
+                }
+
+                ViewContext viewContext = new ViewContext(
+                    controller.ControllerContext,
+                    viewEngineResult.View,
+                    controller.ViewData,
+                    controller.TempData,
+                    sw,
+                    new HtmlHelperOptions()
+                );
+
+                // Await the RenderAsync method
+                await viewEngineResult.View.RenderAsync(viewContext);
+
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+    }
+
+}
+
+after that Go to controoler
+
+
+ //return RedirectToAction(nameof(Index));
+                return Json(new { isvalid = true, html = Helper.RenderRazorViewToString(this,"Index", _context.transactionModels.ToList()) });
+                }
+            return Json(new { isvalid = true, html = Helper.RenderRazorViewToString(this, "Index", _context.transactionModels.ToList()) });
+        }
+
+After that create Partila view -Right click Transaction View-Add-View
+name _ViewAll-select Partial View and copy data from index View table all data and paste in partial view
+
+
+@model IEnumerable<Angularjspopnetcore.Models.TransactionModel>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeneficieryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.SWIFTCode)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            @*<th><a asp-action="AddOrEdit" class="btn btn-success text-white"><i class="fas fa-random"></i>New Transaction</a></th>*@
+
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Transaction", null, Context.Request.Scheme)', 'New Transaction')" class="btn btn-success text-white">
+                    <i class="fas fa-random"></i> New Transaction
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeneficieryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.SWIFTCode)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+and After that call partial view inside of index.cshtml
+
+@model IEnumerable<Angularjspopnetcore.Models.TransactionModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center"><i class="fas fa-comment-dollar text-success"></i> Transaction History</h1>
+//call partial view//
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll",Model)
+</div>
+
+
+
+
+
+
