@@ -1,0 +1,88 @@
+PROJECT WITH ANGULARJS WITH MVC SETUP
+
+PART1/// Setup to Angularjs in MVC 4//
+Step 1 open visual video 2013
+new -create-new project-web-.net framework4 -select ASP.NET MVC4 WEB APPLICATION-NAME-MVCWITHANGULARJS
+DOWNLOAD LIBERARY-Https://code.angularjs.org/1.3.5/
+1-angular.js
+2-angular.min.js
+3-angular-route.js
+4-angular-route.min.js
+and after that add isn Project script folder
+step2-add a bundle for render Angularjs liberary files in App_start-BundleConfig.cs
+add code
+ bundles.Add(new ScriptBundle("~bundles/angular").Include(
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-route.js"));
+step 4-Modify _Layout.cshtml page for support Angularjs.
+<body ng-app="MyApp">
+ @* Add angular Liberary here *@
+    @Scripts.Render("~/bundles/angular")
+ <script src="~/Scripts/MyApp.js"></script>
+Step 5-Add a new js File for add angularjs module,controller
+ Right click Script folder and add new javascript file MyApp.js
+and after drag and upon in _Layout.csthml file
+ <script src="~/Scripts/MyApp.js"></script>
+after that go MyAPP.JS
+/CREATE
+(function () {
+    ///create a module
+    var app = angular.module('MyApp', ['ng-route']);// ng-route will implement routing
+    // create controller
+    app.controller('HomeController', function ($scope) {
+        $scope.message = "Yahoo! we have sucessfully done our first part";
+
+    });
+
+
+})();
+Step 6- Add new controller
+controller folder right click Add Home Controller
+
+ public ActionResult Index()
+        {
+            return View();
+        }
+add view
+@{
+    ViewBag.Title = "Index";
+}
+ 
+<h2>Index</h2>
+<div ng-controller="HomeController">
+    {{message}}
+</div>run program
+
+//Part 2 How can fetch data from the Data base using Angularjs in MVC4//
+Step1-Go To App_Data Right click add new item-Data-SQL Server Database-name-MyDatabase.mdf-
+and open
+table-right click add new table -
+CREATE TABLE [dbo].[Contact] (
+    [ContactID]  INT           IDENTITY (1, 1) NOT NULL,
+    [FirstName]  VARCHAR (50)  NOT NULL,
+    [LastName]   VARCHAR (50)  NULL,
+    [ContactNo1] VARCHAR (200) NOT NULL,
+    [ContactNo2] VARCHAR (200) NULL,
+    [EmailID]    VARCHAR (200) NULL,
+    [Address]    VARCHAR (200) NULL,
+    CONSTRAINT [PK_Contact] PRIMARY KEY CLUSTERED ([ContactID] ASC)
+);
+insert  value 
+step3 Add Entity Data Model-right click project -add-new item = step by  finis
+after that add new controller in DataController
+Public class DataController:Controller
+{
+//
+//GET:/Data/
+  public  JsonResult GetListContact()
+        {
+            Contact c = null;
+ using (MyDatabaseEntities1 dc = new MyDatabaseEntities1())
+            {
+
+                c = dc.Contacts.OrderByDescending(e => e.ContactID).Take(1).FirstOrDefault();
+            }
+            return new JsonResult { Data = c, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+    }

@@ -1,0 +1,2519 @@
+Step1-Open Visula Studio 2013
+Create new project-C#-Demo-First Folder-Scripts-Add js file-angular.min.js and Right Click Add HTML .HTML
+
+HtmlPage1.html---<!doctype html>
+<html ng-app>
+<head>
+first add--<script scr="Scripts/angular.min.js></script>
+</head>
+<body ng-app> step2(after that)
+<div ng-app>
+step3- 10+20={{10+20}}
+    10=20=  {{1==2}}
+    {{name:('Davis',age:'30').name}}
+// array show
+{{['David','Pam','sara'}[2]}
+</div>
+<div>
+40+50={{40+50}}
+</div>
+</body>
+</html>
+
+//Angular module and controller//
+1-right click scripts folder add new js file Scrpt.js
+open Script.js---
+first drag and and upon in angular.min.js
+// create module
+ var myApp=angular.module("myModule",[]);
+//create controller
+ var myController=function($scope){
+   $scope.message="Angularjs tutorial";
+};
+myapp.controller("myController",myController);
+
+// single line create
+myapp.controller("myController",function($scope){
+$scope.Message="Angularjs Tutorial";
+});
+
+Go to html file
+drag and drop Scripts.js file
+<html ng-app="myModule">
+<body ng-controller="mycontroller">
+<div ng-controller="mycontroller">
+{{meaasge}}
+</div>
+<div>
+{{message}}
+</div>
+--------------------------------------------------
+// v333//
+
+// create var type list in 
+myapp.controoler("mycontroller",function($scope){
+  var employee = {
+        Firstname: 'John',
+        Lastname: 'Doe',
+        Gender: 'Male'
+    };
+    $scope.employee=employee
+
+
+});
+----------------------------------------------------
+
+go html page
+<div ng-controller="mycontroller">
+
+<div>
+First Name:{{employee.firstname}}
+</div>
+<div>
+Last Name:{{employee.LastName}}
+</div>
+<div>
+Gender:{{employee.Gender}}
+</div>
+ //now we can create single line controller chaining
+ var app =angular
+      .madule("myModule",[])
+       .controller("myController",function($scope){
+       var employee={ 
+firstname:"David",
+lastname:"Hasting",
+gender:"Male",
+};
+$scope.employee=employee;
+
+};
+-------------------------------------------------------
+      
+/// ng-src//
+fist add new folder images-united flag images
+<html>
+<body>
+<div ng-controller="myController">
+<img scr="/Imges/usa.flag.png style="height:100px; width:200px"/>
+</div>
+
+go sctpt.js folder
+.controller("myController",function($scope){
+ var coontry={
+
+          name:"usa",
+          capital:"Washington,D.c",
+          flag:"/Images/usa-flag.png"
+};
+$scope.country=country;
+});
+};
+
+after taht go
+<div ng-controller="mycontroller">
+<div>
+Name:{{country.name}}
+</div>
+<div>
+Capital:{{country.capital}}
+</div>
+<div>
+<img src="{{country.flag}}"
+         alt="{{country.name +'flag'}}"
+          style="height:100px;width:200px"/>
+</div>
+
+two way binding
+// ng-model directive//
+script.js file
+var myapp=angular
+          .module("myModule",[])
+          .controoler("myController",function($scope){
+$scope.message="Heloo Angualar"
+});
+
+html file
+<div ng-controller="mycontroller">
+<input type="text" ng-model="message'>(change namemessage in any other  lik ethat name greeting )
+<br>
+<br>
+{{message}}
+{{greeting}}
+</div>
+
+afte that go
+var app=angular
+        .module("muModule",[])
+        .controller("mycontrolller",function($scope){
+        var employee={
+        firstname:"ben",
+        lastname:"Hasting",
+        gender:"Male",
+
+};
+$scope.employee=employee;
+});
+
+html page
+<body ng-app="myModule">
+<div ng-controller="myController"
+<table>
+<tr>
+<td>First Name</td>
+<td>
+<input type="text" ng-model="employee.firstname"/>
+</td>
+</tr>
+<td>Last Name</td>
+<td>
+<input type="text" ng-model="employee.lastname"/>
+</td>
+</tr>
+<td>Last Name</td>
+<td>
+<input type="text" ng-model="employee.gender"/>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Firstname</td>
+<td>
+</td
+{{employee.firstname}}
+</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>
+</td
+{{employee.lastname}}
+</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>
+</td
+{{employee.gender}}
+</td>
+</tr>
+
+/// ng-repeat directive
+first script.js folder
+ var app=angular
+         .module("myModule",[])
+          .controller("myController",function($scope){
+          var employee=[
+{firstname:"Ben",lastname:"Hastings", gender:"male",salary:55000},
+{firstname:"sara",lastname:"paul", gender:"female",salary:48000},
+{firstname:"Mark",lastname:"Holand", gender:"male",salary:57000},
+{firstname:"pam",lastname:"Macintosh", gender:"female",salary:53000},
+{firstname:"Todd",lastname:"Barber", gender:"male",salary:60000},
+};
+$scope.employee=employee
+});
+htmlpages
+
+<body ng-app="myModule" style="font-family:Arial">
+<div ng-controller="myController">
+<table>
+<thead>
+<tr>
+<th>FirstName</th>
+<th>LastName</th>
+<th>gender</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employees">
+<td>{{emplyee.firstname}}</td>
+<td>{{employee.lastname}}</td>
+<td>{{employee.gender}}</td>
+<td>{{employee.salary}}</td>
+<td>{{}}</td>
+
+//Handling event in angularjs
+1-
+go to script.js 
+ var technology = [
+             { name: "C#", likes: 0, dislike: 0 },
+             { name: "ASP.NET", likes: 0, dislike: 0 },
+             { name: "SQL SERVER", likes: 0, dislike: 0 },
+             { name: "ANGULAR js", likes: 0, dislike: 0 },
+
+
+    ];
+    $scope.technology = technology;
+    $scope.incrementLikes = function (tech) {
+        tech.likes++;
+    };
+    $scope.incrementDislikes = function (tech) {
+        tech.dislike++;
+    };
+
+ now let go html pages
+
+<body ng-app="myModule">
+<div ng-controller="myController">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Likes</th>
+                        <th>DisLike</th>
+                        <th>Likes/Dislikes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tech in technology">
+                        <td>{{ tech.name }}</td>
+                        <td>{{ tech.likes }}</td>
+                        <td>{{ tech.dislike }}</td>
+                        <td><button ng-click="incrementLikes(tech)">Like</button></td>
+                        <td><button ng-click="incrementDislikes(tech)">Dislike</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>																		` create style sheet
+ .table{
+       border collapse:collapse;
+       font-family:Arial;
+
+
+}
+   .td{
+       border: 1px solid black;
+       paddinf:5px;
+}
+ .tr
+{
+  border:1px solid black;
+  padding:5px;
+  text-align:left;
+}
+ after that add style sheet in html pages
+
+
+/// vedieo 8 filters
+script.js
+c.ntroller("mycontroller",function($scope){
+
+ var employee=[
+{name:"Ben",dateofbirth: new Date("november 23,1980"),gender:"Male",salary:55000.78},
+{name:"Ben",dateofbirth: new Date("may 05,1970"),gender:"Female",salary:95000},
+{name:"sara",dateofbirth: new Date("Agust 15,1974"),gender:"Male",salary:59000},
+{name:"Mark",dateofbirth: new Date("october 27,1979"),gender:"feMale",salary:65000},
+{name:"Pam",dateofbirth: new Date("december 30,1983"),gender:"Male",salary:45000},
+{name:"Todd",dateofbirth: new Date("november 23,1980"),gender:"feMale",salary:95000},
+];
+$scope.employees=employees;
+$scope.rolimit=3;
+
+});
+go to html pages
+
+<body ng-app="mymodule">
+<div ng-controller="mycontroller">
+<input type="number" step="1" min="0" max="5" ng-model="rowlimit">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Date of Birth</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+</thead>
+
+<tbody>
+<tr ng-repeat="empoloyee in employess |limitTo:3:1(rowlimit)">
+<td>{{empoloyee.name|uppercase}}</td>
+<td>{{empoloyee.dateofbirth|date:"dd/mm/yyy"}}</td>
+<td>{{empoloyee.gender|lowrcase}}</td>
+<td>{{empoloyee.salary|number:2}}</td>
+<td>{{empoloyee.salary|currency:"Epound sybol:1"}}</td>
+</tr>
+</tbody>
+</table>
+
+create style sheet
+.body{
+font-family:Arial;
+
+
+}
+.table{
+border-collapse:collapse;
+
+}
+.td{
+ border:1 px solid black;
+padding:5px;
+}
+.th{
+   border:1px solid black;
+padding:5px;
+text-align:left;
+}
+add style sheet in to haed of section
+
+
+}
+}
+
+/// vedio 9
+To short the data in angular js//
+use order by filter
+
+{{orderby_expression| rderby;expression:reverse}}
+example <ng-repeat='employee in employees|orderBy:'salary:false">
+Tosort in ascending order,set reverse: to false
+tosort in descending order,set reverse to true
+we can use also use + and - to sort ascending and descending order respectively
+ng-repeat="employeein employees| orderBy:'salary'"
+<ng-repeat="employee in employees"| orderBy:'salary'">
+<tr ng-repeat="employee in employees|orderBy:'(or use + or-)name':true">
+
+<div ng-controller="MyController">
+        Order By::<select ng-model="sortColumn">
+            <option value="Name">Name ASC</option>
+
+            <option value="Dateofbirth">Date of Birth ASC</option>
+
+            <option value="gender">Gender ASC</option>
+
+            <option value="salary">Salary DESC</option>
+
+        </select>
+    
+    
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                </tr>
+                    </thead>
+                <tbody>
+                    <!--<tr ng-repeat="emp in employee | orderBy:'-Name'">-->
+                    <tr ng-repeat="emp in employee | orderBy:sortColumn">
+                        //or ascending and descening//
+                        <!--<tr ng-repeat="emp in employee | orderBy:'Name':true(false)">-->
+                        <td>{{ emp.Name|uppercase }}</td>
+                        <td>{{ emp.Dateofbirth|date:"dd/mm/yyyy"}}</td>
+                        <td>{{ emp.gender|lowercase }}</td>
+                        <td>{{ emp.salary|number:2}}</td>
+                        <td>{{ emp.salary | currency:"£" : 1 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+and add script.js 
+$scope.sortcolumn="name";
+
+
+///VEDIO 10//
+
+
+$scope.reverseSort=false;
+$scope.sortData=function(column){
+$scope.reverseSort=($scope.SortColumn==column)?!$scope.reverseSort:false;
+$scope.sortColumn=column;
+}
+$scope.getSortclass=function(column){
+if($scope.sortColumn==column){
+return $scope.reverseSort?'arrow-down':'arrow-up'
+}
+
+return '';
+}
+});
+
+
+
+after that add css class
+ 
+.arrow-up{
+        width:0;
+        hieght:0;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+border-bottom:10px solid black;
+}
+.arrow-down{
+
+width:0;
+        hieght:0;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+border-bottom:10px solid black;
+
+
+}
+
+<th ng-click="sortData('name')">name <div ng-class="getSortclass('name')"></div>(change every th column appy)
+change ng-reepeat=
+
+// Vedieo 11  Search filter     in angularjs//
+
+above codesame implement employee in table
+
+Fisrtof all  Gtohtmlpage
+<div ng-controller="myController">
+Search:<input type="text" placeholder="Serach Employe" ng-model="serchText(.city)">(otherwise only pone column name ,city,gender)
+<br/><br>
+add filter expreesion
+<tr ng-repeat="employee in employess|filter:serchText"> 
+
+
+and  add style shet 
+body{
+font-family:Arial;
+
+}
+ .table{
+border-collapse:collapse;
+
+}
+.td{
+ border:1px solid black;
+ padding:5px;
+
+}                                                                                                                                                                                                                                                                                                                                         
+.th{
+
+border:1px solid black;
+padding:5px;
+text-align:left;
+}
+
+//vedieo12 
+
+//multiple search textbox,each textbox searching a specific proprtty//
+add code in htmlpages
+Search:<input type="text" ng-model="SearchText.Name" placeholder="Search name">
+<input type="text" ng-model="SearchText.City" placeholder="Search City">
+<input type="checkbox" ng-model="eaxactMatch"/>exactMatch
+and add filter
+<tr ng-repeat="employee in employees |filter:Searchtext:exactMatch>
+
+another ay search
+and add 
+<input type="text" ng-model="searchText" placeholder="serch city & name"/>
+$scope.search=function(item){
+ if($scope.searchText==undefined){
+return true;
+}
+else
+{
+if(item.name.ToLowerCase().IndexOf($scope.searchText.toLowerCase())!=-1)
+{
+ retyrn true;
+}
+}
+return false;
+{
+});
+
+// vedio 13// createcustom filter in angularjs
+create custom filter to convert intiger value1,2,3 to male,female ant disclosed respectively
+
+step - script.js file
+.controller("mycontroller",function($scope)
+{
+   var employee=[
+     {name:"ben",gender:1,salary:55000},
+{name:"sara",gender:2,salary:66000},
+{name:"Mark",gender:1,salary:55000},
+{name:"pam",gender:12,salary:55000},
+{name:"Todd",gender:3,salary:55000},
+
+
+
+];
+$scope.employee=employee;
+});
+
+afterthat go  html pages
+<body ng-app="myModule">
+<div ng-controller="myController">
+<table>
+</thead>
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employees">
+     <td>{{employee.name}}
+      <td>{{employee.gender| gender}}
+<td>{{employee.salary}}
+<?tr>
+</tbody>
+</table>
+
+create custom filter
+.filter("gender",function(){
+return function (gender){
+switch(gender)
+{
+ case 1:
+   return"Male";
+   case 2:
+return"female";
+case 3
+ return "Not disclosed";
+}
+}
+})
+
+add separate filter  folder
+scriptsfolder add new javascript folder nama filter
+
+
+dag and dropscipt folderis file 
+
+app.filter("gender",function(){
+return function (gender){
+switch(gender)
+{
+ case 1:
+   return"Male";
+   case 2:
+return"female";
+case 3
+ return "Not disclosed";
+}
+}
+});
+after that add  filter.js filter drag and drop in html.pages
+
+//vedieo 14// ng-show and ng-hide are used to controller the visibility of the HTML element//
+
+same above model 
+
+step1 htmlfile in add code
+<div ng-controller="myController">
+<input type="checkbox" ng-model="hideSalary"/>Hide salary
+<br/> <br/>
+after that add
+<th ng-hide="hideSalary">Salary</th>
+<td ng-hide="hideSalary">{{employee.salary}}</td>(same use ng-show
+<td ng-show="hidesalary">####</td>
+}
+})
+
+/// vedieo 15 
+
+//*ng-init directive- The ng ng-init directive allow you to evaluate an expression in the current scope*//
+
+
+html page
+<body ng-app>
+<div ng-init="employees=[
+             {name:'Ben',gender:'Male',City:'London'},
+             {name:'Sara',gender:'female',City:'Chennai'},
+             {name:'Mark',gender:'Male',City:'Chicago'},
+             {name:'Pam',gender:'feMale',City:'London'},
+             {name:'Todd',gender:'Male',City:'Chennai'}
+             ]"></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employees">
+<td>{{employee.name}}</td>
+<td>{{employee.gender}}</td>
+<td>{{employee.city}}</td>
+</tr>
+</tbody>
+</table>
+go to script.js folder
+
+ .controoler("myController",function($scope){
+  var employee=[
+             {name:'Ben',gender:'Male',City:'London'},
+             {name:'sara',gender:'female',City:'chennai'},
+             {name:'Mark',gender:'Male',City:'chicago'},
+             {name:'pam',gender:'feMale',City:'London'},
+             {name:'Todd',gender:'Male',City:'Chennai'},
+
+];
+$scope.employee=employee;
+
+});
+<body ng-app="ngapp">
+<div ng-controller="myController">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employees">
+<td>{{employee.name}}</td>
+<td>{{employee.gender}}</td>
+<td>{{employee.city}}</td>
+</tr>
+</tbody>
+</table>
+
+/// close ng-init/
+// ested order list show
+.controoler("myController",function($scope){
+    var countries=[
+       { 
+        name:"India",
+        cities=[
+             {name:"Hydrabad"},
+             {name:"Chennai""}
+
+]
+},
+{
+   name:"USA",
+   cities:[
+          {name:"Los ANGELIES"},
+          {NAME:"Chicago"},
+
+]
+}
+
+];
+
+$scope.countries=countries
+
+
+
+});
+
+// html pages
+
+<body ng-app="myModule">
+
+<div ng-controller="myControler">
+<ul>
+<li ng-repeat="country in countries" ng-init="parentIndex-$index">
+ {{country.name}}- index-{{$index}}
+<ul>
+<li ng-repat="city in country.cities>
+{{city.name}} -parent Index={{parentindex}}, index-{{$index}}
+/li>
+</ul>
+</li>
+</ul>
+</div>
+</body>
+after that index of city and countries
+
+// part 16 vedieo
+
+ng-include Directive in Angularjs//
+
+ is used to omed an HTML page into another HTML Page or when u want use a specific view in multiple pages in your application//
+sytax  <div ng-include="'EmployeeList.html'">
+</div>
+or or use $scope <div ng-include="employeelist">
+</div>
+script.js file
+.controller("mycontroller",function($scope)
+{
+   var employee=[
+     {name:"ben",gender:1,salary:55000},
+{name:"sara",gender:2,salary:66000},
+{name:"Mark",gender:1,salary:55000},
+{name:"pam",gender:12,salary:55000},
+{name:"Todd",gender:3,salary:55000},
+
+
+
+];
+$scope.employee=employee;
+});
+now Add new htmlpages EmplyeeTable.name
+<table>
+<thead>
+
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employees">
+<td>{{employee.name}}</td>
+<td>{{employee.gender}}</td>
+<td>{{employee.salary}}</td>
+</tbody>
+</table>
+now go to html1pages
+<body ng-app="mymodule">
+<div ng-controller="mycontroller">
+<div ng-include="'EmplyeeTable.HTML'">
+</div>
+or we can write scripts js
+₹scope.employeeview="EmplyeeTable.HTML";
+NOW call
+<div ng-include="employeeview">
+in html pages
+// dropdownlist
+now add new HTML pages EmployeeList.html
+clearthe pages
+<ul ng-repeat="employee in employees">
+<li>
+{{employee.name}}
+<ul>
+<li>
+{{employee.gender}}
+</li>
+<li>
+{{employee.salary}}
+</li>
+</ul>
+</li>
+</ul>
+// now go to htmlpage1
+<div ng-controoler="myController">
+Select View:
+<select ng-model="employeeview">
+<option value="EmployeeTable.html">Table</option>
+<option value="EmployeeList.html>List</option>
+</se;ect>
+<br/><br/>
+<div ng-inclued="employeeview">
+
+/// vedieo 17 Angularjs tutorial consumiming Asp.net web service in angularjs using ₹http//
+
+ first create table in sql server[]create table  tblEmployees{ id int,name varchar50, Gender nvarchar50,salary int,
+ insert value in table ben,male,55000/sara, female,68000/mark,male,57000/pem,female,53000/Todd,Male,570000
+// after that
+web.config file
+connection string
+<coneectionstring>
+
+<add name="DBCS" Conectionstring="server=.;database=SimpleDB ;itegrated ecurity=true>
+
+</connnectionstring>
+now right click new item -webservice-EmployeeService
+now add namespaces
+using system.configuration;
+using system.Data.sqlclient;
+using system.web.serilization;
+[webmethod]
+public void GetAllEmployee
+{
+ now add class=in project Employee downside
+List<Employee> listemployee= new list<Employee>;
+string cs=configurationmanager.Connectionstring["DBCS"].connectionstring;
+usingsqlconnection con= new sqlconnection(cs))
+{
+  sqlcommand cmd= new sqlcommand"select  from tblEmployees",conn);
+con.open();
+sqldatareader rdr= new cmd.executeReader();
+  while(rdr.Read())
+{
+    Employee  employee= new Employee();
+    employee.id=convert.toint32(rdr["id"])
+employee.name=(rdr["name"].tostring())
+employee.gender=(rdr["Gender"].tostring)
+employee.salary=convert.toint32(rdr["salary"])
+listemployee.Add(employee);
+}
+}
+javascriptserizerer js= newjavascriptserilize();
+context.response.write(js.serilizes(listemployee));
+
+public class Employee
+{
+ public int id {get;set;}
+ public string name{get;set;}
+public string gender{get;set;}
+ public int salary{get;set;}
+}
+
+ 
+ Go to Script.js
+// call services we and //
+ var app=angular
+         .module("myModule",[])
+         .controller("MyController", function($scope,$http{
+         $http.get('EmployeeService.asmx/GetAllEmployees');
+         .then(function(respnse){
+          $scope.employees=response.data;
+
+
+});
+      
+
+<body ng-app="myModule">
+<div ng-controller="myControler">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>GENDER</th>
+<th>SALARY</th>    
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="employee in employess">
+<td>{{employee.id}}>/td>
+<td>{{employee.name}}>/td>
+<td>{{employee.gender}}</td>
+<td>{{employee.salary}}</td>
+</tr>
+</tbody>
+</table>
+
+run program
+after that error developer tools if put post then will come result
+and add in web.config
+<system.web>
+<webservices>
+<protocols>
+<add name="HttpGet">
+</protocol>
+<webservics>
+</system.web>
+</configuration>
+run
+//$http service is used  to make HTTP request to remote server
+$http service is a function that has a single input parameter i.e a configuration object
+  $http({
+        method:'GET',
+        url:'EmployeeService.asmx/GetAllEmployees'
+)};
+
+//$scope.employee=$http.get('EmployeeService.asmx/GetAllEmployees')
+                 .then(function(response){
+                 $scope.employee=response.data
+});
+
+use the $logservice to log the response object to the console
+$scope.employees=$http.get('EmployeeService.asmx/GetAllEmployees')
+                 .then(function (respone){
+                 $scope.employees=response.data;
+                 $log.info(response);
+});
+
+// error function 
+
+   function (reason){
+         $scope.error=reason.data;
+          $log.info(response);
+<div ng-controller="myController">
+   {{error}}
+<br/><br/>
+
+///***  ****///
+.controoler("myController", function($scope,$http,$log){
+    var succesCallback=function(response){
+          $log.info(response);
+};
+ var errorCallBack=function(response){
+       $log.info(response);
+};
+
+$http({
+       method:'GET'
+       url:'EmployeeService.asmx/GetAllEmployees'
+      })
+        .then(succesCallback,errorCallBack);
+});
+
+$http service in AngularJS
+Default Transformation provided by Angular http service
+if the data property of the request configuration object contains a JavaScript object
+ .it is automatically converted into JSON object
+if JSON response is detected,it is automatically converted into a javascript object
+
+
+
+// vedieo 20 Create accustom service in Angularjs// 
+
+HTML FLE
+<body ng-app="myModule">
+<div ng-controller="myController">
+<table>
+  <tr>
+    <td>Your String</td>
+    <td><input type="text" ng-model="input"/>
+  </tr>
+  <tr>
+    <td>Result</td>
+    <td><input type="text" ng-model="ouput"/>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="button" ng-click=""transferomstring()" value="Process string"/>
+  </tr>
+</table>
+</div>
+</body>
+
+go to after put ng-model after that defined function
+
+$scope.transformstring=function(input){
+         if(!input){
+           return input;
+}
+ var outpput="";
+   for(var i=0;i<input.length;i++){
+    if(i>o && input[i]==input[i].toUpperCase()){
+      output=output+"";
+}
+output=output+input[i]
+}
+$scope.output=output
+  now run programm
+// we can do otherway
+now create new file in Scripts folder new js file stringservice
+
+drag an drop script.js file
+
+app.factory("stringService',function(){
+return{
+      processstring: function(input){
+         if(!input){
+           return input;
+}
+ var outpput="";
+   for(var i=0;i<input.length;i++){
+    if(i>o && input[i]==input[i].toUpperCase()){
+      output=output+"";
+}
+output=output+input[i]
+}
+$scope.output=output
+
+}
+return output
+}};
+});
+now go to script.js folder
+.controoler("myController",function($scope,stringService){
+          $scope.transformstring=function(input){
+           $scope.output=stringService.processstring(input);
+}
+});
+after that  drag and drop this stringservice.js file
+
+//vedio 21 angularjs anchorschroll with example//
+
+ACHORSCROLLSERVICE
+ SCROLL BOTTOM TOP BUTTON CLIC
+
+STEP-1-htmlpage1-
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Demoanchorscroll">
+<head>
+    <title>AngularJS Scroll Demo</title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/Anchorscroll.js"></script>
+     <link href="Scripts/Style.css" rel="stylesheet" /> 
+</head>
+<body ng-controller="democontroller">
+    <button id="top" ng-click="scrollTo('bottom')">Go To bottom of the page</button>
+    <br />
+    <br />
+    <div>
+        <b>What is AngularJS?</b>
+        <br />
+        AngularJS is a JavaScript framework that helps build applications that run in a web browser.
+        <br /> <br />
+        <b>Who developed AngularJS?</b>
+        <br />
+        <b>Google is the company that developed AngularJS. AngularJS is an open-source project.</b>
+        <br /> <br />
+        <b>AngularJS is an excellent framework for building single-page applications (SPA).</b>
+        <br /> <br />
+        <b>There is a website, http://wwmadewithaangular.com, that has a list of websites built with AngularJS.</b>
+        <br /> <br />
+        <b>What are the benefits of using AngularJS?</b>
+        <br /><br />
+        <b>1. Dependency Injection:</b> Dependency injection is something AngularJS supports.
+        <br> <br />
+        <b>2. Two-way Binding:</b> One of the most useful features in AngularJS is two-way data binding.
+        <br><br />
+        <b>3. Testing:</b> Testing is an area where Angular really shines. Angular is designed with testing in mind.
+        <br><br />
+        <b>4. Model-View-Controller:</b> With Angular, it's easy to implement the Model-View-Controller pattern.
+        <br> <br />
+    </div>
+
+    <br />
+    <b>What is AngularJS?</b>
+    <br />
+    AngularJS is a JavaScript framework that helps build applications that run in a web browser.
+    <br /> <br />
+    <b>Who developed AngularJS?</b>
+    <br />
+    <b>Google is the company that developed AngularJS. AngularJS is an open-source project.</b>
+    <br /> <br />
+    <b>AngularJS is an excellent framework for building single-page applications (SPA).</b>
+    <br /> <br />
+    <b>There is a website, http://wwmadewithaangular.com, that has a list of websites built with AngularJS.</b>
+    <br /> <br />
+    <b>What are the benefits of using AngularJS?</b>
+    <br /><br />
+    <b>1. Dependency Injection:</b> Dependency injection is something AngularJS supports.
+    <br> <br />
+    <b>2. Two-way Binding:</b> One of the most useful features in AngularJS is two-way data binding.
+    <br><br />
+    <b>3. Testing:</b> Testing is an area where Angular really shines. Angular is designed with testing in mind.
+    <br><br />
+    <b>4. Model-View-Controller:</b> With Angular, it's easy to implement the Model-View-Controller pattern.
+    <br> <br />
+
+    <br />
+    <br />
+    <button id="bottom" ng-click="scrollTo('top')">Go To Top of page</button>
+
+</body>
+</html>
+now add style sheet
+.div{
+   width:400px;
+   border:1px solid blacj;
+   font-family:Arial;
+font-size:large;
+padding:5px;
+}
+now add style sheet in page drag ang upon
+
+go to script.js
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Demoanchorscroll">
+<head>
+    <title>AngularJS Scroll Demo</title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/Anchorscroll.js"></script>
+     <link href="Scripts/Style.css" rel="stylesheet" /> 
+</head>
+<body ng-controller="democontroller">
+    <button id="top" ng-click="scrollTo('bottom')">Go To bottom of the page</button>
+    <br />
+    <br />
+    <div>
+        <b>What is AngularJS?</b>
+        <br />
+        AngularJS is a JavaScript framework that helps build applications that run in a web browser.
+        <br /> <br />
+        <b>Who developed AngularJS?</b>
+        <br />
+        <b>Google is the company that developed AngularJS. AngularJS is an open-source project.</b>
+        <br /> <br />
+        <b>AngularJS is an excellent framework for building single-page applications (SPA).</b>
+        <br /> <br />
+        <b>There is a website, http://wwmadewithaangular.com, that has a list of websites built with AngularJS.</b>
+        <br /> <br />
+        <b>What are the benefits of using AngularJS?</b>
+        <br /><br />
+        <b>1. Dependency Injection:</b> Dependency injection is something AngularJS supports.
+        <br> <br />
+        <b>2. Two-way Binding:</b> One of the most useful features in AngularJS is two-way data binding.
+        <br><br />
+        <b>3. Testing:</b> Testing is an area where Angular really shines. Angular is designed with testing in mind.
+        <br><br />
+        <b>4. Model-View-Controller:</b> With Angular, it's easy to implement the Model-View-Controller pattern.
+        <br> <br />
+    </div>
+
+    <br />
+    <b>What is AngularJS?</b>
+    <br />
+    AngularJS is a JavaScript framework that helps build applications that run in a web browser.
+    <br /> <br />
+    <b>Who developed AngularJS?</b>
+    <br />
+    <b>Google is the company that developed AngularJS. AngularJS is an open-source project.</b>
+    <br /> <br />
+    <b>AngularJS is an excellent framework for building single-page applications (SPA).</b>
+    <br /> <br />
+    <b>There is a website, http://wwmadewithaangular.com, that has a list of websites built with AngularJS.</b>
+    <br /> <br />
+    <b>What are the benefits of using AngularJS?</b>
+    <br /><br />
+    <b>1. Dependency Injection:</b> Dependency injection is something AngularJS supports.
+    <br> <br />
+    <b>2. Two-way Binding:</b> One of the most useful features in AngularJS is two-way data binding.
+    <br><br />
+    <b>3. Testing:</b> Testing is an area where Angular really shines. Angular is designed with testing in mind.
+    <br><br />
+    <b>4. Model-View-Controller:</b> With Angular, it's easy to implement the Model-View-Controller pattern.
+    <br> <br />
+
+    <br />
+    <br />
+    <button id="bottom" ng-click="scrollTo('top')">Go To Top of page</button>
+
+</body>
+</html>
+/// <reference path="angular.min.js" />
+var demoapp = angular.module('Demoanchorscroll', [])
+                   .controller('democontroller', function ($scope, $location, $anchorScroll) {
+                       // Function to scroll to a specific element
+                       $scope.scrollTo = function (scrollLocation) {
+                           $location.hash(scrollLocation); // Set the hash value in the URL
+                           $anchorScroll(); // Scroll to the element with the matching id
+                       }
+                   });
+
+ achorscroll service has method appends hash fragments to the URL
+
+
+
+});
+
+/// VEDIEO 22 Angular anchscroll with Database data//
+
+create database-table
+create table tblcounty(
+              id int primary key identity,
+              Name nvarchar(50),
+),
+go
+ insert into tblcountry value('india')
+insert into tblcountry value('USA')
+insert into tblcountry value('UK')
+GO
+CREATE TABLE tblcity
+(
+  id int primary key identity,
+  name nvarchar(50),
+  Countryid int foreign key refrences tblcountry(id)
+)
+go 
+insert into tblcity values('mumbai',1)
+insert into tblcity values('Delhi',1)
+insert into tblcity values('Banglore',1)
+insert into tblcity values('chennai',1)
+insert into tblcity values('hydrabad',1)
+insert into tblcity values('New York',2)
+insert into tblcity values('Lose Angles',2)
+insert into tblcity values('oncpae',2)
+insert into tblcity values('Haules',2)
+insert into tblcity values('PHILIPHHENS',2)
+insert into tblcity values('London',3)
+insert into tblcity values('Birhighum',3)
+insert into tblcity values('Coventry',3)
+insert into tblcity values('livepool',3)
+insert into tblcity values('Manchester',3)
+go
+
+now go web.config file
+<Connectionstring>
+<add name="DBCS"
+        Connectionstring="server=.;database=SampleDB; INtegreted security=SSPI"/>
+</coonectionstring>
+<system.web>
+<protocol>
+<add name="HttpGet"/>
+</protocol>
+<weservies>
+
+</webservices>
+</system.web>
+</configuration>
+
+now add class 
+right click
+public class city
+{
+   public int id{get;set;}
+   public string name {get;set;}
+public int Countryid{get;set;}
+}
+
+public class city
+{
+   public int id{get;set;}
+   public string name {get;set;}
+public list<city> cities{get;set;}
+}
+
+now add web services
+
+Countryservices.asmx
+
+using sytem.coniguration;
+using system.data.sqlclint;
+using system.serilization
+[webmethod]
+public void GetData()
+{
+  List<country>listCountry= new List<Country>();
+string cs= configurationmanager.connectionstring["DBCS"].connectionstring;
+using(sqlconnection conn= new sqlconnection(cs)
+{
+  sqlcommand cmd= new sqlcommand("select * from tblcountry;seelct * from tblcity",conn);
+  sqldataadapter da= new sqldataadapter(cmd);
+ dataset ds= new dataset();
+ da.fill(ds);
+ DataView dataview= new DataView(ds.table[1]);
+ foreach(DataRow countryDataRow in ds.Tables[0].Rows)
+{
+  Country country= new Country();
+  country.Id=Convert.Toint32(countryDtarow["id"]);
+country.Name=countrydtarow["name"].tostring();
+ dataView.RowFilter="Countryid='"+country.id+"'";
+  List<city> listcity= new  List<City>();
+
+  foreach(DataRow countryDataRow in ds.tables[1])
+{
+
+   DataRow citydatarow= cityDataRowView.Row;
+   City city= new City();
+city.id=conver.tont32(cityDataRow["id"]);
+city.name=citydatarow["name"].ToString();
+city.CountryId=convert.ToInt32(cityDataRow["CountryId"]);
+listcity.add(city);
+}
+country.Cities=listCities;
+listCountries.Add(country);
+}
+}
+JavascriptSerilizer js= new javasciptserilzer();
+context.response.write(js.serilize(listCountries);
+}
+}
+now test services
+  call the web services
+
+script.js
+ var demoapp= angular.module("demoapp",[])
+              .controller("CountryController",functi1on($scope,$http,$location,$anchorscroll){
+              $http.get("Countryservice.asmx/GetData")
+              .then(function(response){
+               $scope.countries=response.data;
+               
+});
+  $scope.scrollTo=function(countryname){
+
+  $location.hash(countryname);
+$anchoscroll();
+}
+});
+now add css file right click on project add css
+stylesheet
+.body{
+
+     font-family:Arial;
+}
+
+.div{
+
+  display:block;
+  font-size:xx-large;
+  height:350px;
+  width:400px;
+  border:1px solid black;
+padding:10px;
+overfolw-y:scroll
+}
+go htmlpage
+add script.js,css.style
+<body ng--controller="countrycontroller">
+<<span ng--repeat="country in countries">
+<button ng-click="scrollTo(country.name)">{{country.name}}</button>
+</span>
+<br/><br/>
+<div>
+<fiedlset ng-repeat="country in in countries" id="{{country.name}}">
+<legend>{{country.name}}</legend>
+<ul>
+<li ng-repeat="city in country.Cities">
+{{city.name}}
+</li>
+</ul>
+</fieldset>
+</div>
+</body>
+</html>
+
+
+
+
+});
+
+/// VEDIEO 23aNGULAR JS//
+Angularjs Routing//
+
+first step--www.angularjs.org
+ click ---download AngularJS 1 CLICK CLICK BROWSER ADDITIONAL MODULE
+ SEE FILE- Angular-route.js and angular-route.min.js
+ click copy save it notepad in desktop 
+ add the project in Scripts folder=right click=add-new existing item angular-route.min
+after the Right on project add new item Html file ==index.html
+
+<!doctype html>
+<html xmlsn="http;//www.w3.org/19999/xhtml>
+<head>
+<title></title>
+// add drag and upon file angular .min.js</script>
+// add angular-route.min.js also add cdn link
+//vdeio 24 add//
+</head>
+<body>
+<table style="font-family:Arial">
+<tr>
+<td colspan="2" class="header>
+<h1>
+website header
+</h1>
+</td>
+</tr>
+<tr>
+<td class="leftmenu">
+links
+</td>
+<td class="maincontent">
+home/courses/student views injected here
+</td>
+</tr>
+<tr>
+<tr>
+<td colspan="2" class="footer">
+<b>website fotter</b>
+</td>
+</tr>
+</table>
+now run
+now add style sheet in project
+
+.header{
+       width:800px;
+       height:80px;
+       text-align:ceneter;
+       background-color:#BDBDBDB;
+
+}
+
+
+.footer{
+   background-color:#BDBDBD;
+ text-align:ceneter;
+}
+
+.leftmenu{
+
+         height:500px;
+         background-colour:#D8D8D8;
+         width:150px;
+}
+.maincontent{
+       height:500px;
+       background-color:#E6E6E6;
+       Width:650px;
+}
+ a{
+      display:block;
+      padding:5px;
+
+
+}
+ after that drag and drop
+
+ <td class="leftmenu"
+  <a href="#/home">Home</a>
+  <a href="#/courses">Courses</a>
+  <a href="#/students">Students</a>
+</td>
+
+<td class="maincontent">
+//inject partial template//
+<td>
+<ng-view></ng-view>
+</td>
+</tr>
+
+// vedieo 24 layout template//
+GO to index.html
+
+<td class="maincontent">
+//inject partial template//
+<td>
+<ng-view></ng-view>
+</td>
+</tr>
+//vedieo 25  now add new folder in template right click folder add new add html file-Home.html
+
+
+<div>
+<PARAGAM Establish in 2000 by 3/w enginners offers very cost effective training.PRAGIM Specially in training arena unlike other
+training institution
+</div>
+<ul>
+<li>Training develeverd time real time software experts having more than 10 yrs of experience.</li>
+<li>RealTime projects discussion releting to the possible interview question</li>
+<li>Trainees can attend training and use lab until you get a job.</li>
+<li>Resume prepration and mock up interview.</li>
+<li>100 % placement assistance.</li>
+<li>Lab facility.</li>
+</ul>
+ copy and paste Home.html
+
+upper side include
+<h1>{{message}}</h1>
+ now add new html file in template folder in Courses.html
+
+<h1>Courses we offer</h1>
+<ul>
+<li ng-repeat="course in courses">
+{{courses}}
+</li>
+</ul>
+now add new html file student .html in template folder
+
+  create table tblstudent(
+
+      id int primary key identity,
+      Name nvarchar(50),
+      Gender nvarchar(10),
+      City nvarchar(20),
+)
+ go
+ insert into tblstudent values('mark','male','london')
+insert into tblstudent values('john','male','chennai')
+insert into tblstudent values('sara','female','sydney')
+insert into tblstudent values('Tom','male','New York')
+insert into tblstudent values('Pam','male','Los Angeles')
+insert into tblstudent values('Catherine','female','Chicago')
+insert into tblstudent values('Marry','Female','Mouston')
+insert into tblstudent values('Mike','Male','Phonix')
+insert into tblstudent values('Rosie','female','Manchester')
+insert into tblstudent values('Sasha','Female','Hydrabad')
+go
+after that web.config file
+<connectionstring>
+<add name="DBCS
+    Connectionstring="server=(local);database=SampleDB;Integrated security=true"
+    providerName="System.Data.SqlClint"/>
+</connectionstring>
+<system.web>
+<webservices>
+<protocol>
+<add name="HttpGet">
+</websirvices>
+</system.web>
+</configuration>
+// vedieo 26 
+now crate class add new claas file
+student.cs
+public class Student
+{
+  public int id{get;set;}
+public string name{get;set;}
+public string gender{get;set;}
+public string id{get;set;}
+}
+}
+now add new Studentservice.asmx
+using system.data.sqlclint
+using system.serilizers
+using system.configuration
+[webmethod]
+public void getAllStudent()
+{
+
+
+  string cs=configurationmanager.connectionstring["DBCS"].CONNECTIONSTRING;
+Using(sqlconnection con= new sql connection(cs)){
+      sqlcommand com= new sql command("select * from tblstudent",conn);
+ conn.open();
+sqlDataREader rdr= com.excecutereader();
+while(rdr.read())
+{
+   student student= new student();
+   student.id=convert.int32(rdr["id"]);
+student.name=(rdr["name"]).tostring();
+student.Gender=(rdr["Gender"].tostring());
+student.City=(rdr["city"]).tostring();
+liststudent.Add(student);
+}
+
+}
+ javascriptserilizer js= new Javascriptserilizer();
+context.Response.Write(js.Serilize(liststudents));
+}}}
+
+now run 
+GetAllStudent method
+Go student.html
+<h1>List Of sTUDENTS</H1>
+<UL>
+<LI NG-REPEAT="student in Students">
+{{}}
+</li>
+</ul>
+
+
+// vedio 26 Angularjs Route configuration//
+1-Add new Javascript file in script folderScript.js
+
+var app =Angular.module("Demo",[ngRoute])
+        .config(function($routeprovider){
+        $routeprovider
+        .when("/home",{
+         templateurl:"templates/home.html",
+         controller:"homeController"
+})
+   .when("/courses",{
+         templateUrl:Templates/courses.html";
+         controller:coursesController
+})
+.when("/students",{
+   templateUrl:Templates/syudents.html,
+   controler:studentsController
+})
+});
+.controoler("homecontroller",function($scope){
+ $scope.message="Home page";
+})
+.controoler("coursecontroller",function($scope){
+
+ $scope.courses=["C#","VB.NET","SQL SERVER","ASP.NET"
+
+
+];
+})
+.controoler("studentcontroller",function($scope,$http){
+   $http.get("Studentservice.asmx/GetAllStudent")
+ .thn(function(response)
+{
+  
+ $scope.students=response.data;
+})
+})
+go to index .html
+add scrpt.js file and module name change
+ after tat run pages
+
+// veio 27 remove # symbol from url
+
+Script.js file
+enable 
+.config(function ($routeProvider,$locationprovider){
+
+
+after that end of creating controooler
+  controller:studentsController"
+})
+$locationprovider.html5Mode(true)
+})
+step 2 remove # symbol from index.html every  home,courses, student
+step 3-rewrite rule include in web.config file
+<rewrite>
+<rules>
+<rule name="RewriteRules" stepprocessing="true">
+<match url=","/>
+<conditions logicalgrouping="MatchAll">
+<add input="{REQUEST_FILENAME}' matchType="IsFile" negate="true"/>
+<add input="{REQUEST_FILENAME}' matchType="IsDirectory" negate="true"/>
+<add input="{REQUEST_URI}' patttern="^/(api)" negate="true"/>
+</conditionn>
+<section type="Rewrite" url="/index.html"/>
+</rule>
+</rules>
+</rewrite>
+include code in web.config file
+step4= go to index.html
+add <base href="/ />
+// vedieo 28 Angularjs Default route//
+
+script.js folder
+end off the 
+.otherwise({
+         redirectTo:"/home"
+})
+//vedieo 29Angularjs intllesense in visual Studio//
+go to index.html
+Add refrence angular.mim.js
+//reference path="angular-route-min.js
+1-download Angularjs extention for visualstudio from the following link//
+copy and paste in notepad and save in Angular.intllesense.js
+
+2-Save to thee following folder on your computer
+C:\Program Files(x86)\Microsoft Visual Studio 12.0\javaScript\Refrences
+3=Drag and drop the following 2 files from Scripts folder onto script.js file angular.min,angular-route.min.js
+
+//vedieo 30 Angularjs Routeparams Example
+how to pass and retrieves parameters from URL In Angularjs
+
+GO TO  1-studentService.asmx pagw add code
+
+[webmethod]
+public void Getstudet(int id)
+{
+   Student student= new student();
+   string cs=configurationmanager.connectionstring["DBCS"].Connectionstring;
+   using(sqlconnection con=sqlconnection(cs))
+{
+   sqlcommand cmd= new sqlcommand("select * from tblstudent where id=@id",conn);
+   SqlParameter param= new SqlParameter()
+{
+ ParameterName="@id";
+ Value=id
+
+};
+cmd.parameter.Add(param);
+ con.open();
+SqlDatareade rdr= cmd.executereader();
+while(rdr.Read())
+{
+ Student student= new Student();
+student.id=Convert.ToConvert(rdr["id"]);
+student.name=(rdr["Name"]).Tostring();
+student.gender=(rdr["gender"]).tostring();
+student.city=(rdr["city"]).tostring();
+  }
+}
+jafavascript js = new JavascriptSerilizeer();
+ Context.Response.Write(js.Serialize(student);
+}
+}
+now run service  mrthod name
+Go to student.html
+
+add code
+<li ng-repeat="student in Students>
+<a href="students'{{student.id}}">
+ after that
+script.js page add code
+when("/students,{
+     templateUrl:"Templates/students.html",
+     controller:studentsdetailscontroller
+})
+above
+.otherwise({
+now go goto project folder and add new html folder
+studentsdetails.html
+remove everything page
+<h1> Student Details</h1>
+<table style="border:1px solid black">
+<tr>
+   <td>Id</td>
+    <td>{{student.id}}</td>
+</tr>
+<tr>
+   <td>Name</td>
+    <td>{{student.name}}</td>
+</tr>
+<tr>
+   <td>Gender</td>
+    <td>{{student.Gender}</td>
+</tr>
+<tr>
+   <td>Vity</td>
+    <td>{{student.city}}</td>
+</tr>
+</table>
+<a href="students">back to Student List</a>
+
+now to go to Script.js folder
+ last end of })
+.controller("studentsDetailsController",function($scope,$http,$routeparams){
+  $http({
+       url:"StudentService.asmx/GetStudent",
+       params:{id:$routeParams.id),
+       method:"get"
+})
+   .then(function(response){
+   $scope.student=response.data;
+})
+
+});
+now run click student and clic student=mark=getdata
+// vedieo 31 Angularjs page refresh issue
+click right reload developer tools in browser  source 
+reload refresh page
+syntax error Unexpected tokens
+go to index.html
+<title></title>
+ add code abobe <base href="/">
+// vedieo 32Angularjs Controller syntax
+add project in amgular.min.js and Htmlpage1.
+script.js
+Add refrence in angular.min.js drag and upon in page
+var app=angular.module("Demo",[]);
+app.controller("maincontroller",function ($scope){
+$scope.message="Hello Angular";
+});
+html page <title></tittle>
+add refrence two script.js, and angular.min.js
+
+<body ng-controller="maincontroller as mainCtrl">{{mainCtrl.message}}</h1>
+</body>
+</html>
+go to in index.html=main script.js
+
+ .when("/home".{
+   templateUrl:"Templates/home.html",
+   controller:"homeController as homeCtrl"
+})
+ .when("/courses".{
+   templateUrl:"Templates/courses.html",
+   controller:"coursesController as coursesCtrl"
+})
+.when("/students".{
+   templateUrl:"Templates/students.html",
+   controller:"studentsController as studentsCtrl"
+})
+.when("/students/:id".{
+   templateUrl:"Templates/studentsdetails.html",
+   controller:"studentsdetailsController as studentdetailsCtrl"
+})
+
+and there is no need &scope use this keyword
+.controller("homeController",function(){
+    this.courses=["C#","VB.NET","ASP.NET","SQL SERVER","Angularjs","javascript"];
+})
+.controller("studdentController",function($http){
+          $http.get("studentservice.asmx/GetAllstudents")
+.then(function(response){
+      this.students=response.data;
+})
+.controoler(studentdetailsControoler",function($http,$routeParams){
+ $http({
+ url:"StudentService.asmx/GetStudent",
+method:"get",
+ params:{id:$routeParams.id}
+}).then(function (response){
+   this.student=response.data;
+})
+})
+// go to course.html
+<li ng-repeat="course in coursesCtrl.courses">
+
+and same idea
+home.html
+<td>{{studentdetailsCtrl.student.id}}</td>
+<td>{{studentdetailsCtrl.student.name}}</td>
+<td>{{studentdetailsCtrl.student.gender}}</td>
+<td>{{studentdetailsCtrl.student.city}}</td>
+// student.html
+
+<li ng-repeat="student in studentsCtrl.students">
+<a href="students/{{student.id}}">
+{{student.name
+}}
+ now click student of menu
+ controller("studentControoler",function($http){
+  add code
+ var vm=this;
+  vm.students=response.data;
+})
+.controoler("studentDetailsControoler",function($http,$routeParams){
+ var vm=this;
+
+add vm.student=response.data;
+})
+})
+
+// another way put //
+controllerAs:"homeCtrl
+put avery where 
+conrtollerAs:"courseCtrl
+ControllerAs:"studentCtrl"
+now run program
+/// vedieo 33 Angular nested scope and CONTROLLER A SSyntax//
+nested loop--
+var app=angular
+        .module("Demo", [])
+         .controller("CountryControoler",function($scope){
+          $scope.name="india";
+})
+.controller("stateControoler", function($scope){
+ $scope.name="Maharasrta";
+})
+ .controller("cityController",function($scope){
+  $scope.name="Mumbai";
+})
+
+now add htmlPage.html
+<title></title>
+<script src="angular.min.js"</script>
+<script src="script.js"</script>
+</head>
+<body>
+<div ng-controoler="countrycontroller">
+ {{name}}
+</div>
+<div ng-controller="Statecontrooler">
+{{name}}
+</div>
+<div ng-controller="cityController>
+{{name}}
+</div>
+// vedieo 34 Angularjs controller as vs scope
+ tis vedieo difference etwen $scope and CONTROOLER as syntax
+controller as syntax is new and is officially released in 1,.2.0,$scope is the old technique and is available since initial version of angular is released
+you can use eir=ther one of the these technique.Both have their own uses.for example,controller As sysntax makes your code more readble when wi=orking with
+nested scope
+if you want to use $scope it has to be injected into controller function,where as with controoler as sysntax there is no need for such injection,unless you need it for something else
+
+above nested controller
+
+< div ng-controller="countryControoller as countrycontrolller">
+{{countryCtrl.name}}
+<div ng-controller="stateController as stateCtrl">
+{{contryCtrl.name}} {{stateCtrl.name}
+<div ng-controller"cityController ass cityCtrl">
+{{countryCtrl.name}} {{statectrl.name}}{{cityCtrl.name}}
+</div>
+</div>
+</div>
+</body>
+<html>
+ now run program 
+// vedieo 35 CaseInsenstiveMatch and Inline Template//
+
+1-caseinsenstive match
+2-inline
+gotoScript.js   
+caseInsenstiveMatch
+add code
+$routeprovider
+     .when("\home",{
+ templateUrl:"Templates/home.html",
+ controller:homeController",
+ ControllerAs:"homeCtrl"/
+  casesenstivematch:true
+
+}}
+Or tomake all routr case-senstiveMatch  property on $routeProvider.casesensitiveMatch=true;
+\first course controoler set 
+caseinsstivematch=true
+all add
+.config(function($routeprovide,$locationprovider){
+ $routeprovider.caseInsenstiveMatch=true;
+2-inline  yemplete
+add code .when(:/home",{
+  templateUrl=<h1>inline template in action>/h1>
+
+
+// vedieo 36 Angularjs Route Reload
+Angular js route service reload() method is usefull when you you want to reload just the current route instead of the entire app
+go in script.js file
+ .controoler("studentControoler", function*$http,$route){
+  var vm=this;
+add new code reload method firsy pass parameter in $route
+ after that
+ vm.reloadData=function(){
+ $route.reload();
+
+}
+after that go to Html pages <button ng-click="studentCtrl.reloadData()">Reaload</button>
+
+// vedieo 37 what is diffrece between $scope v/s $rootscope
+$rootscope is available globaaly for all controoler.whereas $scope is only available to the controoler
+  var app=angular.module("demo",[])
+          .controoler("redColorControoler", function($scope,$rootscope){
+          $rootscope.rootScopeColor="I am root scope color";
+          $scope.redColor="I am Red Colur";
+})
+ .controller("greenColorControoler",function($scope){
+  $scope.greenColur="I am green color";
+})
+
+go to html
+<body>
+<div ng-contrroler="redColorControoler">
+Root scope color:{{rootScopeColor}}
+Red color controller:{{redColor}}
+Green CSolor controoler:{{greenColor}}
+or add other code
+Green Colur controoler:
+<span style="color:red" ng-show="greenColour== undefined">
+green color is undefined
+</span>
+</div>
+<div ng-contrroler="geenColorControoler">
+Root scope color:{{rootScopeColor}}
+greem color controller:{{greenColor}}
+red CSolor controoler:{{redColor}}
+or 
+Red  Colur controoler:
+<span style="color:red" ng-show="redColour== undefined">
+red color is undefined
+</span>
+</div>
+</body>
+</html>
+now run program
+
+// vedieo 38
+Angularjs Cancel Route change
+go to script.js file
+  .controller("studentControoler",function($http,$route,$scopo)
+   $scope.on("$routechangestart or $locationchangestart",function(event,next,current){
+   if(!confirm("Are you sure you want to navigate away from this pages to +next.$$route.originalPath")){
+ event.preventDefault();
+}
+});
+var vm=this;
+ vm.reloadData=function(){
+ $route.reload()
+}
+$http.get//
+if using $locationchangestart then change only  page to"+next){
+
+// vedieo part 39 Abgularjs route change event//
+deffrent event that are triggered when a route change occurs in an abgular application
+1-$loctionChangeStart
+2-$routeChangeSort
+3-$locatinChangsucees
+4-$routeChangesuces
+
+Go toscript.js
+remove code in .controller("studentsController",function($http,$route,$scope){
+                var vm=this;
+remove code $scope.on});
+now after that inject paramaeter  .controller("studentsController",function($http,$route,$routescope,$log){
+                                   var vm=this;
+                                   $rootscope.$on("$loctionChangeStart",function(){
+                                   $log.debug("$loctionChangeStart fired");
+});
+                                  $rootscope.$on("$routeChangeSort",function(){
+                                   $log.debug("$routeChangeSort fired");
+});
+                            
+                                   $rootscope.$on("$locatinChangsucees",function(){
+                                   $log.debug("$locatinChangsucees fired");
+});
+
+                                  $rootscope.$on("$routeChangesuces",function(){
+                                   $log.debug("$routeChangesuces fired");
+});
+
+ vm.reloadData=function(){
+              $route.reload();
+run program go to developer tools go to console see 
+4 fired event
+ now change the code 
+ .controller("studentsController",function($http,$route,$scope,$log){
+                                   var vm=this;
+                                   $scope.$on("$loctionChangeStart",function(event,next,current){
+                                   $log.debug("$loctionChangeStart fired");
+                                   $log.debug(event);
+                                   $log.debug(next);
+                                   $log.debug(current);
+});
+                                  $scope.$on("$routeChangeSort",function(event,next,current){
+                                   $log.debug("$routeChangeSort fired");
+                                   $log.debug(event);
+                                   $log.debug(next);
+                                   $log.debug(current);
+
+});
+ now run program and go to developer tools and check console there is all information
+
+
+/// vedio 40 Angularjs optional URL parameters//
+
+search of student and the value
+
+step-1-Goto studentservice.asmx.cs
+ new method
+  [webmethod]
+public void GetStudentByName(string Name)
+{
+ List<Student> listStudents= new List<Student>();
+ string cs=Configurationmanager.connectionstring["DBCS"].ConnectionString;
+ using(SqlConnection conn= new Sqlconnection(cs))
+{
+ SqlCommand cmd= new SqlCommand("select * from tblStudents where name like @name,conn);
+  sqlparameter param= new sqlparameter()
+{
+ ParameterName="@name",
+ Value=name+"%"
+};
+cmd.paramater.add(param);
+conn.open();
+SqlDataReader rdr= new cmd.ExecuteReader();
+while(rdr.Read()){
+ Student student= new Student();
+  student.id=convert.Toint32(rdr["id"]);
+student.name=rdr["Name"].ToString();
+ student.gender=rdr["gender"].tostring();
+student.City=rdr["city"].Tostring();
+listStudent.Add(student);
+}
+
+ 
+JavascriptSerilizer js= new javasciptserilzer();
+context.response.write(js.serilize(listCountries);
+}
+
+}
+}// now run test
+click method GetStudentByName
+  enter ma and invoke method
+get 
+go script.js file
+.controller("studentControoler", function($http,$route and inject new ,$location){
+var vm=this;
+ vm.searchStudent=function(){
+    if(vm.name){
+    $location.url("/StudentSearch/" + vm.name);
+}
+else
+ {
+    $location.url("/StudentSearch");
+}
+}
+ after that go to student.html
+ add code
+<h1>List of Students</h1>
+ Name: <input type="text" ng-model="studentsCtrl.name"/>
+< button ng-click="studentCtrl.searchStudent()">Search</button>
+after that go to add call service add controller 
+in scipt.js add code in down side in pages
+.controller("studentsearchController", function($http,$routeparams){
+   var vm==this;
+   if($routeparams.name)
+{
+  $http({
+         url:"StudentService.asmx/GetStudentByName",
+         method:"get",
+         params:{name:$routeparams.name}
+}).then(function(response){
+   vm.students=response.data;
+})
+}
+ else
+{
+  $http.get("studentService.asmx/GetAllStudents")
+      .then(function(response){
+       vm.students=response.data;
+})
+}
+and define new route search student
+   
+ .when("studentSearch/:name?",{
+   templateUrl:"Templates/studentSearch.html",
+   controoler:studentsSearchControoler",
+    controolerAs:"studentSearchCtrl"
+}}
+.otherwise({
+        redirectTo:"/home";
+now add right click Templates folder add new HTMLpage
+StudentSearch.html
+remoce all code
+after that  add
+<h1>Student Search</h1>
+<table border="1" style="border-collapse:collapse">
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Gender</th>
+<th>City</th>
+</tr>
+      </thead>
+<tr ng-repeat="student in studentSearchCtrl.students">
+        <td>{{student.id}}</td>
+<td>{{student.name}}</td>
+<td>{{student.gender}}</td>
+<td>{{student.city}}</td>
+</tr>
+</table>
+run click Student1
+
+// vedieo 41 Angularjs route resolve//
+
+
+2512802706// account number 
+
+newtwork latency reload  time
+FIrst Goto StudentService.asmx
+[webmethod]
+public void GetAllStudent()
+{
+
+  add code one line in method
+  system.Threading.Thread.Sleep(2000);
+// now run Program after Student menu after Go to script.js folde
+.when("/students", {
+      templateUrl:"Templates/students.html",
+      controller:"studentControoler",
+      ControllerAs:"studentCrl",
+      resolve:{
+              studentList: function($http){
+               return $http.get("StudentService.asmx/GetAllStudents")
+               .then(function(response){
+                return response.data;
+})
+}
+]
+])
+ after go .controoler("studentController", function(studentList,$route,$location){
+ 
+   vm.reloadData=function(){
+    $route.reload();
+}
+vm.students=studentList;
+})
+// vedieo 42 Angularjs ui-router tutorial
+what is ui-router -ui-routing is a third party routing framework for Angularjs
+2-ui-router implements routing based on the states of the application where as ngRoute implements routing based on the route url
+
+
+go to www.//cdnjs.com/%barier%/angular-ui-router enter
+ get  first link copy non manified version
+2-Add ui-router as module dependency3-Add ui-view directive in the layout page
+ now go to index .html
+capy and paste cdn inside place script-route.mim.js
+//
+after that go to Script.js page  add code .module("Demo",["ui-route"])
+ after that go to index.html <td class="mainContent">
+                            partial view <ui-view></ui-view>
+</td>
+//vedieo 43 Angularjs ui-router configuring states//
+A state corresponds to a"place" in the application
+To Configure a state use state() method $stateprovider service
+$stateproveder.state(statename,stateconfig);
+//configure home state here
+.config(function ($stateProvider){
+  // comment code $routeprovider.caseinsenstivematch=rue;
+ $stateprovider
+          .state("home",{
+           url:"/home",
+'          templateUrl:"templates/home.html",
+           controoler:"homecontrooler",
+           controllerAs:"homeCtrl"
+})
+ .state("courses",{
+           url:"/courses",
+'          templateUrl:"templates/home.html",
+           controoler:"homecontrooler",
+           controllerAs:"homeCtrl"
+})
+  .state("student" same it is
+
+after .controoler("studentControoler", function($studentlist,$state,$location){
+same it is everythinf
+ only change vm.reloadata=function(){
+$state.reload();
+after thatindex .html
+change code in
+<td class="leftmenu">
+<a ui-sref="home">Home</a>
+<a ui-sref="courses">Courses</a>
+<a ui-sref="students">Students
+</td>
+and also .when all code commented
+
+//Vedieo 44 Angularjs ui router parameters//How to use urm parameter with ui-router in angularjs
+
+
+step 1-Define the state with URL parameter
+
+.state(studentdetails", {
+ url:"/students/id",
+templateurl::Templates/Studentdetails.html",
+ controller:"studentDetailsControoler",
+  controolerAs:"studentDetailsCtrl"
+})
+after that go
+2-link
+student.html
+
+<li ng-repeat="student in studentsCtrl.student">
+<a ui-sref="studentDetails({id:student.id})">
+{{student.name}}
+</a>
+.controoler(studentdetailsController",function($http,$routeParams(change, $stateparams)
+{
+  change only for params:{id:$stateparams.id}otherwise everything same it as
+
+/ vedieo 45 Angularjs ui router optional parameters
+
+ we include a question mark (?) at the end of the parameter name.With ui-router the parameters are optional bydefault.so there is nothing special that we have to do
+step1 .state("studentsSearch",{
+ url::/studentSearch/:name",
+templateurl:"Templates/studentSearch.html",
+ controller:"studentsSearchControoler",
+contrrolerAs:"studentsSearchCtrl"
+})
+place of code .when(studentdetals
+after that 2 step
+.contooler("studentcontrooler",function(studentlist,$state){
+var vm=this;
+vm.studentSearch=function(){
+  $state.go("studentSearch",{name:vm.name});
+}
+vm.reloadData=function(){
+ $state.reload();
+}
+vm.students=studentslist;
+})
+ // Vedieo 46 How to make routes tht are configured using ui-router case insensitive//
+The routes that are configured using ui-router are use case sensitive by default.
+To make the route case-insensitive inject $urlMatcherFactoryProveder service the config() function call caseInsenstive(true)
+
+go to scrpt.js 
+.config(function($stateProvider,$urlMtherFactoryProvider){
+cooment
+urlMtherFactoryProvider.caseinsenstive(true);
+
+// vedieo 47 in this vedieo defalt route uin ui-router//
+
+.config(function($stateProvider,$urlMtherFactoryProvider,$urlRouterProvider,$urlrouterProvider){
+$urlRouterProvider.otherwise("/home");
+   
+// vedieo 48 in this vedeio Angularjs ui router custom data//
+how to add custom data add use property
+ step 1- Go to scipt.js .state("home",{
+     code as it is 
+ controolerAs:"homeCtrl,
+  (add that code)         data:{
+                  customData1:"Home state Custom Data 1";
+
+                  customData2:"Home state Custom Data 2";
+}
+})
+.state
+same it is add code in courses
+after ConrollerAs:"courseCtrl",
+(add that code)         data:{
+                  customData1:"Courses state Custom Data 1";
+
+                  customData2:"Courses state Custom Data 2";
+}
+})
+ now go to .controoler("homeControoler",function($data){
+ this.message="Home Page";
+ this.homeCustomDtat1=$state.current.data.customData1;
+ this.homeCustomDtat2=$state.current.data.customData2;
+
+this.coursesCustomDtat1=$state.get("courses").data.customData1;
+this.coursesCustomDtat1=$state.get("courses).data.customData2;
+})
+afer that go to home.html;
+
+</ul>
+<fieldset>
+<;egend>Home</legnd>
+custom Data 1:{{homeCtrl.homeCustomData1}}
+<br/>
+custom Data 2:{{homeCtrl.homeCustomData2}}
+</fieldset>
+<fieldset>
+<;egend>Courses</legnd>
+custom Data 1:{{coursesCtrl.coursesCustomData1}}
+<br/>
+custom Data 2:{{coursesCtrl.coursesCustomData2}}
+</fieldset>
+
+// Vedieo 49 Angularjs ui router html5mode//
+intis vdeio how to use HTML5 mode route with ngRoute
+step 1-- script.js var app=angular
+                           ,module("Demo",["ui-router"])
+                           .config(function($locationProvider){
+                            $locationProvider.html5Mode(true);
+
+})
+step 2- Remove # symbols from the URLs
+
+index.html
+
+step 3-rewrite rules web .config
+step-4 include<base href="\"\> in index html upper sid put code after script> <base href="\"\> 
+
+///vedieo 50 ui-router active state css//
+how to highlight the navigateion menu item if the user is currently on that page
+step 1-go to sstsle,css page
+ add code 
+.activesatate{
+             background-color:black;
+             color:white
+]
+step 2- index html call css page
+<td class="leftmenu">
+<a ui-sref="home" ui-sref-active="activestate">Home</a>
+<a ui-sref="courses" ui-sref-active="activestate">courses</a>
+<a ui-sref="students" ui-sref-active="activestate">students</a>
+</td>
+
+// Vedio 51step 2-go to studentservice.asmx Angularjs ui-router nested views//
+in this topic nested state and view in angularjs
+ step 1- nested state is parent child reletion ship using 'dot notation'
+sysntax-.state("studentParent",{
+// write code parent satae configg properties
+})
+ step 2- nesting states:Using the parent property with the parent name as string.
+.state("stuentParent", {
+// parent state config properties
+})
+.state("students",{
+  parent:"studentParent",
+// child state config propertys
+})
+
+step1 Go to Project create new class right click project add new class stuentTotals.cs
+public class studentTotals
+{
+   public int total{get;set;}
+   public int males{get;set;}
+   public int females{get;set;}
+}
+}
+step 2-studentservice.asmx
+
+[webmethod]
+public void GetStudentTotals()
+{
+  studentTotals totals= new studentTotals();
+  string cs=configurationManager.connectinstring["DBCS"].connectionstring;
+using(SqlConnection conn= new sqlconnection(cs))
+{
+  sqlcommand cmd= new sqlcommand("select COALESCE(gENDER,'GrandTotal') AS Gender,COUNT(*)AS Total from tblstudents Group by (Gender),conn)
+conn.open();
+ sqlDataReader rdr= cmd.ExecuteReader();
+    while(rdr.Read())
+    {  switch(rdr["Gender"].ToString())
+{
+   case"Male":
+   totals.males=convert.ToINT32(rdr["Total"]);
+   break;
+   case"female":
+    totals.females=Convert.Toint32(rdr["Total"]);
+    break;
+    default:
+  totals.total=convert.ToInt32(rdr["Total"]);
+  break;
+}
+}
+}
+javascriptSerilizer js= new javascriptserilizers();
+  Context.Response.Write(js.Serialize(totals));
+}run project invoke service test
+
+step 3 create script.js file student parent state which will be the parent for "students" and "studentdetails" state
+.student("studentParent",{
+         url:"/students",
+         controoler:"studentParentControoler",
+         ControllerAs:"stdParentCtrl",
+         templateUrl:"Templates/studentsParent.html",
+         resolve:{
+                  studentTotals: function($http){
+                  return $http.get("StudentService.asmx/GetStudentsTotals")
+                  .then(function(response){
+                   return response.data;
+})
+}
+},
+abstract:true
+})
+
+}
+ now change tha value ther stydent detail in .student("studentParent.studentDetails"{ every place
+and also redin
+after that ibclude studentparnt controoler here 
+.controooler("studentParentController", function(studentdetails){
+  this.males=studentTotals.males;
+  this.females=studentTotals.females;
+  this.total=studentTotals.total;
+})
+now add new in Template folder new html page studentParent.html
+
+
+<h3>Total Males student:{{studentParent.males}}</h3>
+<h3>Total feMales student:{{studentParent.females}}</h3>
+<h3>Total Total student:{{studentParent.total}}</h3>
+<ui-view></ui-view>
+
+step 8-student.html
+index.html change it < a ui-sref="studentParent.student" ui-sref-active="activestate">students</a>
+student.html
+<a ui-sref="studentParent.studentdetails({id:student.id})>
+andstudentdetails.html page
+<h4><a ui-sref="studentParent.students">Back to Students list</a></h4>
+step 10 change go to .controller("studentcontrooler",function(studentlistt,$state,studenttotals){
+{
+
+} 
+ vm.students=stydentlist;
+ vm.studentTotals=studentTotals;
+})in this Html student.html display the student total
+<h1>
+List Of Student({{studentCtrl.studentTotals.total}})
+</h1>
+
+// vedieo 52 Angularjs tutorial ui router multiple named view//
+in this vedieo Multiple named view//
+
+step-1 studentDetails coimg from studentParent.HTML
+
+SEE code and comment code grandTotal in //<h3>
+
+remove remov ui-view and add new <div ui-view="totalData"></div>
+                                  <div ui-view="studentData"></div>
+
+step2- add code
+ .state("studentParent".students,{
+url:"/",
+ views:{
+   "studentData":{
+                   templateurl:"Templates/students.html",
+                   controoler:"studentsControoler",
+                   controolerAs:"studentsCtrl",
+  resolve:{
+    studentlist:function($http){
+  return $http.get("studentservice.asmx/GetAllStudent")
+  .then(function(response){
+   return response.data;
+})
+}
+},
+ after that second
+  "totalData":(
+               templateUrl:"Templates/studentTotal.html",
+               controoler:"studentsTotalControoler",
+                ControllerAs:"studentsTotalsCtrl",
+}
+}
+})
+}
+}
+})
+      after that create controller
+       .controoler("studentTotalControoler", function(studentTotals){
+        this.total=studentTotals.total;
+})
+
+next step create studentTotal.HTML FOLDER Templates => add right click 
+<h3>Grand Total:{{studentTotalCtrl.total}}</h3>
+
+.state("studentParent.studentDetails", {
+     url:"/:id",
+     views:{
+            "studentData":{
+                templateUrl:"Templates/studentDetails.html",
+               controoler:"studentsDetailsControoler",
+                ControllerAs:"studentsTotalsCtrl"
+}
+}
+]
+})
+/// vedieo 53  in this vedieo Diffrence between ngRoute and ui-router//
+ngroute is developed by the angular team where as ui-router is third party module
+ ng-route implements routing based on the route URL where as ui-router implements routng based on the state of the application
+ui-router provides everything that the ngRoute module provides plus the following additional features
+
